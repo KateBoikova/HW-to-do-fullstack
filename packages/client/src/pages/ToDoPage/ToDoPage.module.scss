@@ -1,0 +1,121 @@
+html,
+body {
+  height: 100vh;
+}
+
+.formContainer {
+  width: 100%;
+  height: 100vh;
+  background-color: #ffe2d7;
+  padding-top: 50px;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.themeButton {
+  color: #4f8b6d;
+  background-color: #fbf9f9;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.noTasks {
+  color: #8bb266;
+  font-style: italic;
+}
+
+.toDoFormInput {
+  width: 80%;
+  min-width: 250px;
+
+  background-color: #d7eac6;
+  padding: 10px;
+  & form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: center;
+    justify-content: space-around;
+    & input {
+      border-color: #b6d499;
+      padding: 10px;
+      border-radius: 5px;
+      flex-grow: 1;
+    }
+
+    & button {
+      border-radius: 5px;
+      border-color: #b6d499;
+      background-color: #ebf4e4;
+      color: #8bb266;
+      font-weight: bold;
+      flex-grow: 0;
+    }
+  }
+}
+.invalid {
+  background-color: #d097aa;
+}
+.validInput {
+  background-color: #b6d499;
+}
+.error {
+  position: absolute;
+  top: 100px;
+
+  background-color: #af647d;
+  color: #fffdfc;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 3px;
+}
+.tasksList {
+  background-color: #fff3ee;
+  width: 80%;
+  margin-top: 0;
+  padding: 10px;
+  margin-bottom: 20px;
+  & .task {
+    list-style: none;
+    border-bottom: 1px solid #ecbbab;
+    margin-bottom: 5px;
+    color: #4f8a6e;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow-wrap: normal;
+    & .taskItem {
+      flex-shrink: 0;
+      max-width: 70%;
+      min-width: 250px;
+    }
+    & .taskItemButtons {
+      min-width: 90px;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      & .doneButton {
+        border: 2px solid #77a48e;
+        border-radius: 5px;
+        background-color: #a2c0b2;
+      }
+      & .deleteButton {
+        border: 2px solid #d097aa;
+        border-radius: 5px;
+        background-color: #e7c3cf;
+      }
+    }
+  }
+}
+
+.done {
+  text-decoration: line-through;
+  color: #ecbbab;
+}
