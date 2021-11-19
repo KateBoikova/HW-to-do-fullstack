@@ -41,6 +41,7 @@ function ToDoReducer (state = initialState, action) {
     }
     case ACTION_TYPES.CREATE_TASK_SUCCESS: {
       const { task } = action;
+      console.log(`task`, task);
       const { tasks } = state;
       const newTasks = [...tasks, task];
       return {

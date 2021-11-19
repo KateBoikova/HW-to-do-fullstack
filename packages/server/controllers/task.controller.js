@@ -20,11 +20,7 @@ module.exports.createTask = async (req, res, next) => {
   const { body } = req;
   try {
     const createdTask = await Task.create(body);
-    const preparedTask = _.omit(createdTask.get(), [
-      'id',
-      'createdAt',
-      'updatedAt',
-    ]);
+    const preparedTask = _.omit(createdTask.get(), ['createdAt', 'updatedAt']);
     res.status(201).send(preparedTask);
   } catch (e) {
     next(e);
@@ -55,6 +51,7 @@ module.exports.updateTaskById = async (req, res, next) => {
     params: { taskId },
     body,
   } = req;
+
   try {
     const [taskCount, [updatedTask]] = await Task.update(body, {
       where: { id: taskId },
@@ -62,7 +59,6 @@ module.exports.updateTaskById = async (req, res, next) => {
     });
     if (taskCount > 0) {
       const preparedTask = _.omit(updatedTask.get(), [
-        'id',
         'createdAt',
         'updatedAt',
       ]);

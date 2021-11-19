@@ -23,8 +23,8 @@ function ToDoList (props) {
 const mapStateToProps = state => state.todo;
 const mapDispatchToProps = dispatch => {
   return {
-    updateTaskAction: id => {
-      dispatch(updateTaskAction(id));
+    updateTaskAction: (id, isDone) => {
+      dispatch(updateTaskAction(id, isDone));
     },
     deleteTaskAction: id => {
       dispatch(deleteTaskAction(id));

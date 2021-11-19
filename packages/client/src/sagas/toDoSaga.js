@@ -21,7 +21,9 @@ import * as API from '../api';
 export function * getTasksSaga () {
   yield put(getTasksRequest());
   try {
-    const { data: tasks } = yield API.getTasks();
+    const {
+      data: { data: tasks },
+    } = yield API.getTasks();
     yield put(getTasksSuccess(tasks));
   } catch (e) {
     yield put(getTasksError(e));
@@ -29,7 +31,7 @@ export function * getTasksSaga () {
 }
 export function * createTaskSaga (action) {
   const { task } = action;
-  yield put(createTaskRequest(task));
+  yield put(createTaskRequest());
   try {
     const { data: newTask } = yield API.createTask(task);
     yield put(createTaskSuccess(newTask));
@@ -39,10 +41,12 @@ export function * createTaskSaga (action) {
 }
 
 export function * updateTaskSaga (action) {
-  const { id } = action;
+  const { id, isDone } = action;
+  console.log(`action`, action);
   yield put(updateTaskRequest());
   try {
-    const { data: updatedTask } = yield API.updateTask(id);
+    const { data: updatedTask } = yield API.updateTask(id, isDone);
+    console.log(`updatedTask`, updatedTask);
     yield put(updateTaskSuccess(updatedTask));
   } catch (e) {
     yield put(updateTaskError(e));

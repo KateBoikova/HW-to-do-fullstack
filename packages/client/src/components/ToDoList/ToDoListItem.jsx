@@ -20,7 +20,7 @@ function ToDoListItem (props) {
         <button
           className={styles.doneButton}
           title='Mark as done'
-          onClick={() => updateTask(id)}
+          onClick={() => updateTask(id, !isDone)}
         >
           <CheckCircleOutlineRoundedIcon />
         </button>

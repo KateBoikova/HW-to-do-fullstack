@@ -37,9 +37,10 @@ export const createTaskError = e => ({
   error: e,
 });
 
-export const updateTaskAction = id => ({
+export const updateTaskAction = (id, isDone) => ({
   type: ACTION_TYPES.UPDATE_TASK_ACTION,
   id,
+  isDone,
 });
 
 export const updateTaskRequest = () => ({

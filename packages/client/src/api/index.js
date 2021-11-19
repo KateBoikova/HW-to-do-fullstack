@@ -2,38 +2,25 @@ import axios from 'axios';
 import CONSTANTS from '../constants';
 
 const axiosOptions = {
-  baseUrl: 'http://127.0.0.1:3000/api',
+  baseURL: 'http://localhost:5000/api',
 };
 
-const apiInstance = axios.create({ axiosOptions });
-
-const tasks = [
-  {
-    id: Date.now(),
-    body: 'First task',
-    isDone: false,
-  },
-];
+const apiInstance = axios.create(axiosOptions);
 
 export const getTasks = () => {
-  return Promise.resolve({ data: tasks });
+  apiInstance.get('./tasks');
 };
 
 export const createTask = task => {
-  const newTask = { ...task, id: Date.now() };
-  tasks.push(newTask);
-  return Promise.resolve({ data: newTask });
+  return apiInstance.post('/tasks', task);
 };
 
 export const deleteTask = id => {
-  return Promise.resolve();
+  apiInstance.delete(`/tasks/${id}`);
 };
 
-export const updateTask = id => {
-  const index = tasks.findIndex(t => id === t.id);
-  let updatedTask = tasks[index];
-  updatedTask.isDone = !updatedTask.isDone;
-  return Promise.resolve({ data: { ...updatedTask } });
+export const updateTask = (id, isDone) => {
+  return apiInstance.patch(`/tasks/${id}`, { isDone });
 };
 
 export const changeTheme = theme => {
