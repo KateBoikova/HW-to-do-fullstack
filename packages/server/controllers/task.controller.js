@@ -16,6 +16,21 @@ module.exports.getTasks = async (req, res, next) => {
   }
 };
 
+module.exports.createTask = async (req, res, next) => {
+  const { body } = req;
+  try {
+    const createdTask = await Task.create(body);
+    const preparedTask = _.omit(createdTask.get(), [
+      'id',
+      'createdAt',
+      'updatedAt',
+    ]);
+    res.status(201).send(preparedTask);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.getTaskById = async (req, res, next) => {
   const {
     params: { taskId },
